@@ -12,7 +12,7 @@ app.get('/', (req: Request, res:Response) => {
     res.send('Welcome to BookBase server!');
 });
 
- // error-handler for if no route found 
+ // error-handler for if no route is found 
 app.use((req, res, next) => {
     res.status(400).send({ message: "Rout not found" })
 });
