@@ -1,6 +1,7 @@
 import dotenv from "dotenv";
 import express, { Application, NextFunction, Request, Response } from 'express';
 import cors from 'cors';
+import routes from "./modules/routes";
 
 dotenv.config();
 const app: Application = express();
@@ -8,6 +9,10 @@ const app: Application = express();
 app.use(cors());
 app.use(express.json());
 
+// All the API-endpoints 
+app.use(routes);
+
+// base route
 app.get('/', (req: Request, res:Response) => {
     res.send('Welcome to BookBase server!');
 });
@@ -20,8 +25,7 @@ app.use((req, res, next) => {
 // global error-handler                    
 app.use((error: any, req: Request, res: Response, next: NextFunction) => {
     if (error) {
-        console.log("error", error);
-        res.status(400).json({ message: "Something went wrong from global error handler", error })
+        console.log("Global error", error);
     }
 });
 

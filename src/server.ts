@@ -11,7 +11,8 @@ async function main() {
     try {
         
          // Connect to MongoDB Atlas using Mongoose
-        const uri = `mongodb+srv://${config.db_user}:${config.db_pass}@cluster0.rdxg6.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0`;
+        const uri = `mongodb+srv://${config.db_user}:${config.db_pass}@cluster0.rdxg6.mongodb.net/bookBaseDB?retryWrites=true&w=majority&appName=Cluster0`;
+
         await mongoose.connect(uri);
         console.log('Connected to MongoDB Atlas Using Mongoose');
 
