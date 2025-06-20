@@ -3,6 +3,5 @@ dotenv.config();
 
 
 export default {
-    db_user: process.env.DB_USER,
-    db_pass: process.env.DB_PASS
+    db_url: process.env.DATABASE_URL,
 }
