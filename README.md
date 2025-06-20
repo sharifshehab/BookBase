@@ -1,27 +1,23 @@
-# GuildDo- Uniting Gamers
+# BookBase
 
-<div align="center">
-  <img height="650" width="100%" src="https://i.ibb.co.com/FkqgZZzv/guild-do-mockup.webp"  />
-</div>
+BookBase is a library management system that provides a robust backend solution designed to streamline book tracking, borrowing, and inventory management for libraries. This system offers a structured way to manage books, track borrowing history, and generate summaries of lending activity, all through a well-organized API. The aim is to simplify library operations by automating book tracking and borrowing processes, making it easier for librarians and users to manage resources efficiently.
 
-The purpose of GuildDo is to create a dynamic online community where gamers can connect, share, and stay informed about all things gaming. This platform offers a vibrant space for users to discover and contribute the latest news on game releases, upcoming titles, gaming competitions, and award shows. GuildDo serves as the ultimate hub for gamers to engage in exciting discussions, share opinions, and uncover new trends in the gaming world. Whether it’s the latest competition results, sneak peeks at upcoming games, or insights into the gaming industry, GuildDo is the go-to destination for any gaming news. Our mission is to foster a thriving community that celebrates gaming culture and keeps users at the forefront of the gaming world.
 
-## Technologies used:
-- **React Router**
-- **Context API**
-- **Firebase**
-- **Tanstack Query**
-- **Axios**
+
+## Tech Stack:
+- **Express**
+- **TypeScript**
+- **MongoDB**
+- **Mongoose**
 
 ## Key features:
-1. **Forums are sortable by popularity, based on the average of user ratings.**
-2. **Use tags to find the best-suited forums for your interests** 
-3. **Post up to five times as a general user or enjoy unlimited posts with a one-time premium upgrade.**
-4. **Report a commenter to the authorities, and they will take necessary actions based on your report:**
-    - **If the report status is "Inappropriate Comment," the admin will remove the comment.**
-    - **If the report status is "Spam Comment," the user will receive a warning, and a warning badge will be displayed on their profile.**
-    - **If the report status is "Abusive Comment," it will result in the user being banned and their account permanently deleted.**
-5. **Process author reports, post announcements, monitor all data through the admin dashboard, and introduce new tags to the website.**
+1. **Add new books to the library database.**
+2. **Retrieve books with optional filters (e.g., by genre-filter, sortBy, sort, limit).**
+3. **Fetch a specific book by its unique ID.**
+4. **Update existing book details (title, author, copies, etc.).**
+5. **Borrowed books Record along with user information.**
+6. **Generate summaries of borrowing activity.**
+
 
 ## Dependencies:
     -@stripe/react-stripe-js: ^3.1.1,
@@ -66,18 +62,39 @@ The purpose of GuildDo is to create a dynamic online community where gamers can 
 ## Installation:
 1. **First, clone the repository to your local machine. you can do this by downloading the zip file or by cloning it using the web URL**
 2. **Navigate to the project folder and open it with cmd terminal**
-3. **Write <code>npm i</code> in the terminal**
-4. **Create a file name <code>.env.local</code>, inside the project root folder**
-5. **Save your Firebase config keys as environment variables in this file:**
-    - **VITE_APIKEY=your-firebase-api-key**
-    - **VITE_AUTHDOMAIN=your-firebase-authdomain**
-    - **VITE_PROJECTID=your-firebase-project-id**
-    - **VITE_STORAGEBUCKET=your-firebase-storage-bucket**
-    - **VITE_MESSAGINGSENDERID=your-firebase-messaging-sender-id**
-    - **VITE_APPID=your-firebase-app-id**
+3. **Write <code>npm i</code> in the terminal. This will install all the necessary packages on your system**
+4. **Create a file name <code>.env</code>, inside the project root folder**
+5. **Save your MongoDB uri here as environment variables in this file:**
+    - **DATABASE_URL=your-mongoDb-uri**
 6. **After the installation is complete, start the application by typing <code>npm run dev</code> in terminal**
 
-- **You should now be able to view and interact with the application on your local machine!**
+- **You should now be able interact with the application on your local machine!**
+
+
+### Add new Book:
+    POST -/api/books
+
+### Get All Books:
+    GET -/api/books
+
+### Get Flitted Books:
+    GET -/api/books?filter=FANTASY&sortBy=createdAt&sort=desc&limit=5
+
+### Get Specific Book By Id:
+    GET -/api/books/:bookId
+
+### Update Book Information:
+    PUT -/api/books/:bookId
+
+### Delete Book:
+    DELETE -/api/books/:bookId
+
+### Borrow Books:
+    post -/api/borrow
+
+### Summary Of Borrowed Books:
+    GET -/api/borrow
+
 
 ##  Live Link:
-- **[GuildDo](https://guild-do.web.app)**
+- **[BookBase Server](https://book-base-server.vercel.app)**
