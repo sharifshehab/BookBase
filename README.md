@@ -19,44 +19,20 @@ BookBase is a library management system that provides a robust backend solution 
 6. **Generate summaries of borrowing activity.**
 
 
-## Dependencies:
-    -@stripe/react-stripe-js: ^3.1.1,
-    - @stripe/stripe-js: ^5.5.0,
-    - @tanstack/react-query: ^5.64.1,
-    - axios: ^1.7.9,
-    - date-fns: ^4.1.0,
-    - firebase: ^11.1.0,
-    - localforage: ^1.10.0,
-    - match-sorter: ^8.0.0,
-    - react: ^18.3.1,
-    - react-dom: ^18.3.1,
-    - react-helmet-async: ^2.0.5,
-    - react-hook-form: ^7.54.2,
-    - react-hot-toast: ^2.5.1,
-    - react-icons: ^5.4.0,
-    - react-router-dom: ^7.1.1,
-    - react-select: ^5.9.0,
-    - react-share: ^5.1.2,
-    - react-stickynode: ^5.0.1,
-    - recharts: ^2.15.0,
-    - sort-by: ^1.2.0,
-    - sweetalert2: ^11.15.10,
-
 ## Dev Dependencies:
-    - @eslint/js: ^9.17.0,
-    - @types/react: ^18.3.18,
-    - @types/react-dom: ^18.3.5,
-    - @vitejs/plugin-react: ^4.3.4,
-    - autoprefixer: ^10.4.20,
-    - daisyui: ^4.12.23,
-    - eslint: ^9.17.0,
-    - eslint-plugin-react: ^7.37.2,
-    - eslint-plugin-react-hooks: ^5.0.0,
-    - eslint-plugin-react-refresh: ^0.4.16,
-    - globals: ^15.14.0,
-    - postcss: ^8.5.0,
-    - tailwindcss: ^3.4.17,
-    - vite: ^6.0.5
+    -@types/cors: ^2.8.19,
+    -@types/express: ^5.0.3,
+    -@types/mongodb: ^4.0.6,
+    -ts-node-dev: ^2.0.0,
+    -typescript: ^5.8.3,
+    
+
+## Dependencies:
+    -cors: ^2.8.5,
+    -dotenv: ^16.5.0,
+    -express: ^5.1.0,
+    -mongodb: ^6.17.0,
+    -mongodb: ^8.16.0
 
 
 ## Installation:
