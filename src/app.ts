@@ -18,8 +18,8 @@ app.get('/', (req: Request, res:Response) => {
 });
 
  // error-handler for if no route is found 
-app.use((req, res, next) => {
-    res.status(400).send({ message: "Rout not found" })
+app.use((req: Request, res: Response, next: NextFunction) => {
+    res.status(404).send({ message: "Route not found" })
 });
 
 // global error-handler                    

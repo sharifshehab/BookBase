@@ -4,7 +4,9 @@ import { Borrow } from "./borrow.model";
 // borrow book
 const borrowBook = async (req: Request, res: Response): Promise<any> => {
     try {
-        const { book, quantity} = req.body;
+        const { book, quantity } = req.body;
+
+        // book quantity check
         const checkAvailability = await Borrow.handleBookQuantity(book, quantity);
         if (!checkAvailability) {
             return res.status(400).send(
@@ -46,8 +48,6 @@ const borrowBook = async (req: Request, res: Response): Promise<any> => {
 // borrowed summary
 const borrowedSummary = async (req: Request, res: Response) => {
     try {
-
-
         const summery = await Borrow.aggregate(
             [
                 {
@@ -81,7 +81,6 @@ const borrowedSummary = async (req: Request, res: Response) => {
                         _id: 0,
                         book: '$book',                
                         totalQuantity: '$totalQuantity',       
-
                     }
                 }
             ]
@@ -92,14 +91,6 @@ const borrowedSummary = async (req: Request, res: Response) => {
                 success: true,
                 message: "Borrowed books summary retrieved successfully",
                 data: summery
-                // data: {
-                //     "_id": borrowed._id,
-                //     "book": borrowed.book,
-                //     "quantity": borrowed.quantity,
-                //     "dueDate": borrowed.dueDate,
-                //     "createdAt": borrowed.createdAt,
-                //     "updatedAt": borrowed.updatedAt
-                // }
             }
         );
 

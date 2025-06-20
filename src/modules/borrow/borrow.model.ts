@@ -24,27 +24,29 @@ const borrowSchema = new Schema<IBorrow, BorrowBook>({
     }
 );
 
+// For checking book quantity  
 borrowSchema.static("handleBookQuantity", async function (bookId: string, bookQuantity: number): Promise<boolean> {
 
     const book = await Book.findById(bookId);
 
+    // If book isn't found or book copies are insufficient
     if (!book || book.copies < bookQuantity) {
         return false;
     }
 
-    const manageQuantity = await Book.findByIdAndUpdate(bookId, {$inc: { copies: -bookQuantity }}, {
-        new: true,
-        runValidators: true,
-    });
-
-    if (manageQuantity && manageQuantity.copies === 0) {
-        await Book.findByIdAndUpdate(bookId, {available: 'false'} , {
-            new: true,
-            runValidators: true,
-        });
-    }
+    // update book quantity if book is borrowed
+    await Book.findByIdAndUpdate(bookId, { $inc: { copies: -bookQuantity } },{new: true}
+    );
     return true;
+});
 
+// Post Hook: for changing book available status
+borrowSchema.post('save', async function (doc, next) {
+    const book = await Book.findById(doc.book);
+    if (book && book.copies === 0) {
+        await Book.findByIdAndUpdate(doc.book, { available: 'false' }, { new: true }); 
+    }
+    next();
 });
 
 export const Borrow = model<IBorrow, BorrowBook>('Borrow', borrowSchema);
