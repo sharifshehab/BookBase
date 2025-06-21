@@ -18,15 +18,8 @@ app.get('/', (req: Request, res:Response) => {
 });
 
  // error-handler for if no route is found 
-app.use((req: Request, res: Response, next: NextFunction) => {
+app.use((req: Request, res: Response) => {
     res.status(404).send({ message: "Route not found" })
-});
-
-// global error-handler                    
-app.use((error: any, req: Request, res: Response, next: NextFunction) => {
-    if (error) {
-        console.log("Global error", error);
-    }
 });
 
 export default app;
