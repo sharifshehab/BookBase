@@ -28,9 +28,9 @@ const addBook = async (req: Request, res: Response) => {
         const err = error as any;
         res.status(400).send(
             {
+                message: "Validation failed",
                 success: false,
-                message: "Error Occurred",
-                errors: err.errors
+                error:  err.errors
             }
         );
     }

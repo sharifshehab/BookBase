@@ -12,7 +12,7 @@ const bookSchema = new Schema<IBook>({
     },
     genre: {
         type: String,
-        required: true,
+        required: [true, "Please provide a genre name."],
         enum: {
             values: ['FICTION', 'NON_FICTION', 'SCIENCE','HISTORY','BIOGRAPHY','FANTASY',],
             message: 'Genre not supported, got {VALUE}'

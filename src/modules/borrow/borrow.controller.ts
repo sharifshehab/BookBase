@@ -63,7 +63,7 @@ const borrowedSummary = async (req: Request, res: Response) => {
                 },
                 {
                     $group: {
-                        _id: '$borrowedBooks.title',
+                        _id: '$book',
                         book: {
                             $addToSet: {
                                 title: '$borrowedBooks.title',
