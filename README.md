@@ -1,7 +1,6 @@
 # BookBase
 
-BookBase is a library management system that provides a robust backend solution designed to streamline book tracking, borrowing, and inventory management for libraries. This system offers a structured way to manage books, track borrowing history, and generate summaries of lending activity, all through a well-organized API. The aim is to simplify library operations by automating book tracking and borrowing processes, making it easier for librarians and users to manage resources efficiently.
-
+BookBase library management system aims to simplify library operations by automating book tracking and borrowing processes. This system offers a structured way to manage books, track borrowing history, and generate summaries of borrowed records, all through a well-organized API. 
 
 
 ## Tech Stack:
