@@ -49,10 +49,12 @@ const getBooks = async (req: Request, res: Response) => {
 
         let books;
 
-        if (filter && limit && sortBy && sort) {
+        if (filter && sortBy) {
             books = await Book.find({genre: filter}).sort({[sortBy as string]: sortingOrder}).limit(bookLimit);
-        } 
-        books = await Book.find();
+        } else {
+            books = await Book.find();
+        }
+        
         
         res.status(200).send(
             {
