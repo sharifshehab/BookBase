@@ -78,12 +78,12 @@ const getBooks = async (req: Request, res: Response) => {
 // get book by id  
 const getBookById = async (req: Request, res: Response): Promise<any> => {
     try {
-        const book = await Book.findById(req.params.bookId);
+        const book = await Book.findById(req.params.id);
 
         if (!book) {
             return res.status(400).send({
                 success: false,
-                message: `No book found with this id, ID: ${req.params.bookId}`,
+                message: `No book found with this id, ID: ${req.params.id}`,
             })
         }
 

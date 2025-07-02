@@ -4,6 +4,6 @@ import { borrowedController } from "./borrow.controller";
 
 export const borrowedRoutes = Router();
 
-borrowedRoutes.post('/borrow', borrowedController.borrowBook); // borrow book route
-borrowedRoutes.get('/borrow', borrowedController.borrowedSummary); // borrowed book summary route
+borrowedRoutes.post('/borrow-books', borrowedController.borrowBook);           // borrow book route
+borrowedRoutes.get('/borrowed-summary', borrowedController.borrowedSummary);  // borrowed book summary route
 
