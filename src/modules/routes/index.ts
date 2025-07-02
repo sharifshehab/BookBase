@@ -4,7 +4,8 @@ import { borrowedRoutes } from "../borrow/borrow.route";
 
 const routes = Router();
 
-routes.use('/api', bookRoutes); // book API-endpoint
+routes.use('/', bookRoutes); // book API-endpoint
 routes.use('/api', borrowedRoutes); // borrow API-endpoint
 
 export default routes;
+
