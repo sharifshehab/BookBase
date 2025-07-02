@@ -110,7 +110,7 @@ const getBookById = async (req: Request, res: Response): Promise<any> => {
 const updateBook = async (req: Request, res: Response) => {
     try {
 
-        const book = await Book.findByIdAndUpdate(req.params.bookId, req.body, {new: true, runValidators: true});
+        const book = await Book.findByIdAndUpdate(req.params.id, req.body, {new: true, runValidators: true});
 
         res.status(200).send(
             {
@@ -135,7 +135,7 @@ const updateBook = async (req: Request, res: Response) => {
 const deleteBook = async (req: Request, res: Response) => {
     try {
 
-        const book = await Book.findByIdAndDelete(req.params.bookId);
+        const book = await Book.findByIdAndDelete(req.params.id);
 
         res.status(200).send(
             {
