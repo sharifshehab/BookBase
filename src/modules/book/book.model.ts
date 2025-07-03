@@ -53,6 +53,15 @@ bookSchema.pre('findOneAndUpdate', async function (next) {
     next();
 });
 
+// Post Hook: for changing book available status
+bookSchema.post('save', async function (doc, next) {
+    const book = await Book.findById(doc._id);
+    if (book && book.copies === 0) {
+        await Book.findByIdAndUpdate(doc._id, { available: false }, { new: true }); 
+    }
+    next();
+});
+
 export const Book = model<IBook>('Book', bookSchema);
 
     
