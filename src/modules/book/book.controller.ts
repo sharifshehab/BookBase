@@ -1,14 +1,29 @@
 import { Request, Response } from "express";
 import { Book } from "./book.model";
+import {z} from "zod";
+
+const BookZodSchema = z.object({
+    _id: z.string().optional(),
+    title: z.string(),
+    author: z.string(),
+    genre: z.enum(["FICTION", "NON_FICTION", "SCIENCE", "HISTORY", "BIOGRAPHY", "FANTASY"]),
+    isbn: z.string(),
+    description: z.string().optional(),
+    copies: z.number().nonnegative(),
+    available: z.boolean().optional(),
+    createdAt: z.date().optional(),
+    updatedAt: z.date().optional(),
+});
 
 // add new book
 const addBook = async (req: Request, res: Response) => {
     try {
-        const book = await Book.create(req.body);
+        const ValidatedBookData = BookZodSchema.parse(req.body);
+        const book = await Book.create(ValidatedBookData);
         res.status(200).send(
             {
                 success: true,
-                message: "Book created successfully",
+                message: "Book added successfully",
                 data: {
                     "_id": book._id,
                     "title": book.title,
@@ -106,11 +121,14 @@ const getBookById = async (req: Request, res: Response): Promise<any> => {
     }
 }
 
+    
 // update book  
 const updateBook = async (req: Request, res: Response) => {
     try {
 
-        const book = await Book.findByIdAndUpdate(req.params.id, req.body, {new: true, runValidators: true});
+        const ValidatedBookData = BookZodSchema.parse(req.body);
+        
+        const book = await Book.findByIdAndUpdate(req.params.id, ValidatedBookData, {new: true, runValidators: true});
 
         res.status(200).send(
             {

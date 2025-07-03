@@ -44,7 +44,7 @@ borrowSchema.static("handleBookQuantity", async function (bookId: string, bookQu
 borrowSchema.post('save', async function (doc, next) {
     const book = await Book.findById(doc.book);
     if (book && book.copies === 0) {
-        await Book.findByIdAndUpdate(doc.book, { available: 'false' }, { new: true }); 
+        await Book.findByIdAndUpdate(doc.book, { available: false }, { new: true }); 
     }
     next();
 });

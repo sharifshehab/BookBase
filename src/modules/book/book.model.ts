@@ -42,6 +42,17 @@ const bookSchema = new Schema<IBook>({
     }
 );
 
+// Pre Hook: for changing book available status
+bookSchema.pre('findOneAndUpdate', async function (next) {
+    const update = this.getUpdate() as any;
+    if (update?.copies === 0) {
+        update.available =  false
+    } else if ( 0 < update?.copies){
+        update.available =  true
+    }
+    next();
+});
+
 export const Book = model<IBook>('Book', bookSchema);
 
     
