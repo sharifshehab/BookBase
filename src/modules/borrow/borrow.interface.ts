@@ -1,7 +1,7 @@
 import { Model, Types } from "mongoose"
 
 export interface IBorrow {
-    book: Types.ObjectId,
+    bookID: Types.ObjectId,
     quantity: number,
     dueDate: Date,
     createdAt?: Date,

@@ -3,7 +3,7 @@ import { BorrowBook, IBorrow } from "./borrow.interface";
 import { Book } from "../book/book.model";
 
 const borrowSchema = new Schema<IBorrow, BorrowBook>({
-    book: {
+    bookID: {
         type: Schema.Types.ObjectId,
         ref: "Book",
         required: [true, "Please provide a valid book-id."]
@@ -24,31 +24,28 @@ const borrowSchema = new Schema<IBorrow, BorrowBook>({
     }
 );
 
-// For checking book quantity  
-borrowSchema.static("handleBookQuantity", async function (bookId: string, bookQuantity: number): Promise<boolean> {
 
-    const book = await Book.findById(bookId);
-
+ // "Static" Custom Method: For checking book quantity  
+borrowSchema.static("handleBookQuantity", async function (bookID: string, bookQuantity: number): Promise<boolean> {
+    const book = await Book.findById(bookID);
     // If book isn't found or book copies are insufficient
     if (!book || book.copies < bookQuantity) {
         return false;
     }
-
-    // update book quantity if book is borrowed
-    await Book.findByIdAndUpdate(bookId, { $inc: { copies: -bookQuantity } },{new: true}
-    );
     return true;
 });
 
-// Post Hook: for changing book available status
+
+// Post Hook: Decrees book quantity after borrowed and change book-available status if book quantity is "0"
 borrowSchema.post('save', async function (doc, next) {
-    const book = await Book.findById(doc.book);
-    if (book && book.copies === 0) {
-        await Book.findByIdAndUpdate(doc.book, { available: false }, { new: true }); 
-    }
+    
+    const changeBookQuantity = await Book.findByIdAndUpdate(doc.bookID, { $inc: { copies: -doc.quantity } }, { new: true }); 
+
+    if (changeBookQuantity && changeBookQuantity.copies === 0) {
+        await Book.findByIdAndUpdate(changeBookQuantity._id, { available: false }, { new: true }); 
+    } 
     next();
-});
+}); 
 
 export const Borrow = model<IBorrow, BorrowBook>('Borrow', borrowSchema);
 
-    

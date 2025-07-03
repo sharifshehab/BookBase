@@ -4,10 +4,10 @@ import { Borrow } from "./borrow.model";
 // borrow book
 const borrowBook = async (req: Request, res: Response): Promise<any> => {
     try {
-        const { book, quantity } = req.body;
+        const { bookID, quantity } = req.body;
 
-        // book quantity check
-        const checkAvailability = await Borrow.handleBookQuantity(book, quantity);
+        // check book quantity 
+        const checkAvailability = await Borrow.handleBookQuantity(bookID, quantity);
         if (!checkAvailability) {
             return res.status(400).send(
                 {
@@ -24,7 +24,7 @@ const borrowBook = async (req: Request, res: Response): Promise<any> => {
                 message: "Book borrowed successfully",
                 data: {
                     "_id": borrowed._id,
-                    "book": borrowed.book,
+                    "bookID": borrowed.bookID,
                     "quantity": borrowed.quantity,
                     "dueDate": borrowed.dueDate,
                     "createdAt": borrowed.createdAt,
@@ -32,7 +32,6 @@ const borrowBook = async (req: Request, res: Response): Promise<any> => {
                 }
             }
         );
-
     } catch (error) {
         const err = error as any;
         res.status(400).send(
