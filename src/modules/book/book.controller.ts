@@ -3,20 +3,20 @@ import { Book } from "./book.model";
 import {z} from "zod";
 
 const BookZodSchema = z.object({
-    _id: z.string().optional(),
     title: z.string(),
     author: z.string(),
     genre: z.enum(["FICTION", "NON_FICTION", "SCIENCE", "HISTORY", "BIOGRAPHY", "FANTASY"]),
-    isbn: z.string(),
+    isbn: z.number(),
     description: z.string().optional(),
     copies: z.number().nonnegative(),
-    available: z.boolean().optional(),
-    createdAt: z.date().optional(),
-    updatedAt: z.date().optional(),
+    available: z.boolean(),
+    // createdAt: z.date().optional(),
+    // updatedAt: z.date().optional(),
 });
 
 // add new book
 const addBook = async (req: Request, res: Response) => {
+
     try {
         const ValidatedBookData = BookZodSchema.parse(req.body);
         const book = await Book.create(ValidatedBookData);
@@ -38,7 +38,6 @@ const addBook = async (req: Request, res: Response) => {
                 }
             }
         );
-
     } catch (error) {
         const err = error as any;
         res.status(400).send(

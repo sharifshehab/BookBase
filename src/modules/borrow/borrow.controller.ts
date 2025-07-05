@@ -52,7 +52,7 @@ const borrowedSummary = async (req: Request, res: Response) => {
                 {
                     $lookup: {
                         from: 'books',               
-                        localField: 'book',  
+                        localField: 'bookID',  
                         foreignField: '_id',        
                         as: 'borrowedBooks'             
                     }
@@ -62,7 +62,7 @@ const borrowedSummary = async (req: Request, res: Response) => {
                 },
                 {
                     $group: {
-                        _id: '$book',
+                        _id: '$bookID',
                         book: {
                             $addToSet: {
                                 title: '$borrowedBooks.title',

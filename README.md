@@ -47,29 +47,29 @@ BookBase library management system aims to simplify library operations by automa
 
 
 ### Add new Book:
-    POST -/api/books
+    POST -/books/create-book
 
 ### Get All Books:
-    GET -/api/books
+    GET -/books/all-books
 
 ### Get Flitted Books:
-    GET -/api/books?filter=FANTASY&sortBy=createdAt&sort=desc&limit=5
+    GET -/books/all-books?filter=FANTASY&sortBy=createdAt&sort=desc&limit=5
 
 ### Get Specific Book By Id:
-    GET -/api/books/:bookId
+    GET -/books/single-book:id
 
 ### Update Book Information:
-    PUT -/api/books/:bookId
+    PUT -/books/edit-book/:id
 
 ### Delete Book:
-    DELETE -/api/books/:bookId
+    DELETE -/books/delete-book/:id
 
 ### Borrow Books:
-    post -/api/borrow
+    post -/borrow/borrow-books
 
 ### Summary Of Borrowed Books:
-    GET -/api/borrow
+    GET -/borrow/borrowed-summary
 
 
 ##  Live Link:
-- **[BookBase Server](https://book-base-server.vercel.app)**
+- **[BookBase Server](https://new-book-base.vercel.app)**

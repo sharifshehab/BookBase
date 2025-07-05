@@ -6,8 +6,12 @@ import routes from "./modules/routes";
 dotenv.config();
 const app: Application = express();
 
-app.use(cors());
+app.use(cors({
+    origin: ['http://localhost:5000', 'https://book-base-client.vercel.app']
+})
+);
 app.use(express.json());
+
 
 // All the API-endpoints 
 app.use(routes);

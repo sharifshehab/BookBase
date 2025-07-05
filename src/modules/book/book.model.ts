@@ -19,8 +19,8 @@ const bookSchema = new Schema<IBook>({
         }
     },
     isbn: {
-        type: String,
-        required:  [true, "Please provide isbn number."],
+        type: Number,
+        required:  [true, "Please provide book isbn number."],
         unique: true
     },
     description: {
