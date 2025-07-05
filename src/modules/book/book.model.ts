@@ -21,7 +21,6 @@ const bookSchema = new Schema<IBook>({
     isbn: {
         type: Number,
         required:  [true, "Please provide book isbn number."],
-        unique: true
     },
     description: {
         type: String,
@@ -34,7 +33,8 @@ const bookSchema = new Schema<IBook>({
     available: {
         type: Boolean,
         default: true
-    }
+    },
+
 },
     {
         versionKey: false,

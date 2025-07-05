@@ -1,5 +1,5 @@
 import dotenv from "dotenv";
-import express, { Application, NextFunction, Request, Response } from 'express';
+import express, { Application, Request, Response } from 'express';
 import cors from 'cors';
 import routes from "./modules/routes";
 
@@ -7,7 +7,7 @@ dotenv.config();
 const app: Application = express();
 
 app.use(cors({
-    origin: ['http://localhost:5000', 'https://book-base-client.vercel.app']
+    origin: ['http://localhost:5173', 'https://book-base-client.vercel.app']
 })
 );
 app.use(express.json());

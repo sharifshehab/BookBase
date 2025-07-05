@@ -6,6 +6,4 @@ export interface IBook {
     description?: string,
     copies: number,
     available: boolean,
-    createdAt?: Date,
-    updatedAt?: Date,
 }

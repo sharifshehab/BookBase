@@ -10,13 +10,12 @@ const BookZodSchema = z.object({
     description: z.string().optional(),
     copies: z.number().nonnegative(),
     available: z.boolean(),
-    // createdAt: z.date().optional(),
-    // updatedAt: z.date().optional(),
 });
+
 
 // add new book
 const addBook = async (req: Request, res: Response) => {
-
+   
     try {
         const ValidatedBookData = BookZodSchema.parse(req.body);
         const book = await Book.create(ValidatedBookData);
@@ -32,9 +31,7 @@ const addBook = async (req: Request, res: Response) => {
                     "isbn": book.isbn,
                     "description": book.description,
                     "copies": book.copies,
-                    "available": book.available,
-                    "createdAt": book.createdAt,
-                    "updatedAt": book.updatedAt
+                    "available": book.available
                 }
             }
         );
@@ -123,10 +120,9 @@ const getBookById = async (req: Request, res: Response): Promise<any> => {
     
 // update book  
 const updateBook = async (req: Request, res: Response) => {
+    
     try {
-
         const ValidatedBookData = BookZodSchema.parse(req.body);
-        
         const book = await Book.findByIdAndUpdate(req.params.id, ValidatedBookData, {new: true, runValidators: true});
 
         res.status(200).send(
